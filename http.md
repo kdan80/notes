@@ -48,14 +48,28 @@ HTTP defines methods (verbs) that identify the desired action to be performed;
 
 An HTTP request is composed of 3 parts; 
 1. A request line.
-2. A request header. 
-3. An optional body.
+2. Request headers. 
+3. A blank line.
+4. An optional body.
 
-**Request line** - Takes the form METHOD-URI-PROTOCOL e.g. `GET /inde.html HTTP/1.1`
+**Request line**  
+Takes the form METHOD-URI-PROTOCOL;   
+`GET /index.html HTTP/1.1`  
+The URI may also contain a "?" indicating the start of a query string;  
+`GET /index?query=hello.html HTTP/1.1`
 
-**Request Header** - A set of header fields that take the form name:value e.g. `Host: google.com`, `Content-Type: application/json`
+**Request Headers**  
+A set of header fields that take the form; name:value 
+`Host: google.com`   
+`Content-Type: application/json`
 
-**Request Body** - An optional field (not used by **GET**) used to send additional information to the server e.g. username and password or a blog post. Can contain virtually any typ of data, JSON is commonly used.
+The header fields allow for additional information to be sent to the server, e.g. authentication data, content type, desired response type etc
+
+**Blank Line**  
+The blank line indicates that all metadata has been sent.
+
+**Request Body**  
+An optional field (not used by **GET**) used to send additional information to the server e.g. username and password or a blog post. Can contain virtually any typ of data, JSON is commonly used.
 
 **Example HTTP Request**
 ```
@@ -71,3 +85,26 @@ Cache-Control: no-cache
 ```
 
 Note there is a blank line between the header and body.
+
+### HTTP Response
+
+Like a request an http response is composed of 3 parts differing only in the composition of the first line, which is called the status line; 
+
+**Status line**  
+The start of the response includes the http protocol and version, a status code and associated text.  
+`HTTP/1.1 200 OK`  
+`HTTP/1.1 404 Not Found`
+
+**Status Codes**  
+The first digit of a response status code defines its class:
+
+`1XX` Informational  
+The request was received, continuing process.  
+`2XX` Successful  
+The request was successfully received, understood, and accepted.  
+`3XX` Redirection  
+Further action needs to be taken in order to complete the request.  
+`4XX` Client error  
+The request contains bad syntax or cannot be fulfilled.  
+`5XX` Server error  
+The server failed to fulfill an apparently valid request.
