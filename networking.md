@@ -1,6 +1,6 @@
 ## 1 - Networking
 
-Networking is encapsulated by a reference model known as the Open Systems Interconnection (OSI) model. This model is split into 7 layers that define how systems should communicate with each other. The layers are:
+Networking, communication betweem computer systems, is governed by a reference model known as the Open Systems Interconnection (OSI) model. This model is split into 7 layers that define how systems should communicate with each other. The layers are:
 
 <ol reversed>
  <li>Application layer</li>
@@ -12,7 +12,7 @@ Networking is encapsulated by a reference model known as the Open Systems Interc
  <li>Physical layer</li>
 </ol>
 
-Layers 7,6,5 are often grouped together as an application/software layer. Each layer specifies its own Protocol Data Unit (PDU) that represents how data is abstracted at that layer (see Layer Architecture below). Each layer has well defined functions and methods that allow adjacent layers to interact with it.
+Layers 7,6,5 are often grouped together as an application/software layer and its collective  purpose is to produce data that lower layers can then encapsulate. Each layer specifies its own Protocol Data Unit (PDU) that represents how data is abstracted at that layer (see Layer Architecture below). Each layer has well defined functions and methods that allow adjacent layers to interact with it. Moving down the stack data is "encapsulated" and moving up it is "decapsulated".
 
 **Layer Architecture**
  <table>
@@ -112,4 +112,76 @@ Two OSI compatible systems communicating over a network proceeds as follows;
 3. At layer N−1 the SDU is concatenated with a header, a footer, or both, producing a layer N−1 PDU. It is then passed to layer N−2.
 4. The process continues until reaching the lowermost level, from which the data is transmitted to the receiving device.
 5. At the receiving device the process is reversed with the data passing from the lowest to the highest layer.
+
+## TCP/IP Model
+
+Like the OSI mode TCP/IP (Internet Protocol Suite) is designed to standardise computer networking. The OSI model is widely referenced and useful when thinking about networking but it is seldom implemented in full in modern computer networking. TCP/IP on the other hand is standard in most modern computer systems.
+
+**TCP/IP Model Layers as specified in RFC1122**
+<ol reversed>
+ <li>Application Layer</li>
+ <li>Transport Layer</li>
+ <li>Internet Layer</li>
+ <li>Link Layer</li>
+</ol>
+
+Note: Cisco certification splits the Network Acces Layer into Data Link and Physical Layers leading to a 5 layer TCP/IP model.
+
+**TCP/IP Layer Architecture**
+
+**Layer Architecture**
+ <table>
+  <tr>
+    <th colspan=2>Layer</th>
+    <th>PDU</th>
+    <th>Function</th>
+    <th>Protocols</th>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Application</td>
+    <td>Data</td>
+    <td>Application level communication services split into user protocols (e.g. HTTP, FTP) and support protocols (e.g. DNS)</td>
+    <td>HTTP, FTP, DNS</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Transport</td>
+    <td>Segment or UDP Datagram</td>
+    <td>End-to-end host communication that may be connection-oriented or connectionless</td>
+    <td>TCP, UDP</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Internet</td>
+    <td>Packet</td>
+    <td>Routing using heirarchical IP addressing</td>
+    <td>IPv4,IPv6</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Link</td>
+    <td>Frame</td>
+    <td>Communication of data between hosts on the same link</td>
+    <td>PPP, Ethernet</td>
+  </tr>
+</table> 
+
+**Application Layer**  
+This layer is analogous to layer 5, 6 and 7 of the OSI Model, and provides most of the same services and protocols. RFC1122 categorises protocols as;  
+* User Protocols - Such as HTTP, that provide services directly to the user.
+* Support Protocols - That provide common system functions (name mapping, booting etc) such as DNS.
+
+**Transport Layer**  
+The transport layer provides end-to-end communication services for applications. There are two primary transport protocols;  
+* Transmission Control Protocol (TCP) - Slow, reliable and connection-oriented.  
+* User Datagram Protocol (UDP) - Fast, unreliable and connectionless.
+
+**Internet Layer**  
+Uses the IP Protocol to route data and find the best path from origin to destination. The IP Protocol is connectionless and there is no guarantee that data will be transmitted reliably, it may arrive out of order, damaged, or not at all. The layers above IP are responsible for reliable data transmission.
+
+The IP Protocol specifies a Maximum Transmission Unit (MUT) which determines the size of the packet. Layers above have to modify the size of their datagrams to comply with the MTU.
+
+**Link Layer**  
+A "link" refers to all hosts on a local network that are reachable without traversing a router. It is analogous to OSI Layer 2 and performs most of the same functions. Also known as Network AccessLayer but in the RFC1122 spec it is called Link Layer.
 
