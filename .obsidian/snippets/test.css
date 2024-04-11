@@ -1,0 +1,10 @@
+td {
+    padding: 4px;
+    text-align: center;
+    background-color: #2a2a2a;
+}
+
+table, th, td {
+    border: 2px solid #222 !important;
+    border-collapse: collapse;
+}

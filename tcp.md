@@ -1,22 +1,3 @@
-<style>
-table, th, tr {
-    border: none;
-    outline: none;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-td {
-    border-top: none;
-    border-bottom: none;
-}
-
-.tab-bg {
-    background: #2a2a2a;
-    
-}
-</style>
-
 #### TCP
 Transmission Control Protocol provides reliable, ordered, and error-checked delivery of a stream of bytes between applications running on hosts communicating via an IP network.
 
@@ -54,9 +35,9 @@ Structure of a TCP header
     <td colspan=2>Urgent Pointer</td>
   </tr>
   <tr>
-    <td colspan=4>TCP Options</td>
+    <td colspan=4>Options</td>
   </tr>
-</table> 
+</table>
 
 **Three-Way Handshake**  
 Before data can be transmitted a connection must be established, this achieved via a three-way handshake:
